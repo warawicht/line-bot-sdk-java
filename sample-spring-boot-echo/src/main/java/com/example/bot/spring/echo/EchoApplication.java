@@ -34,6 +34,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import org.springframework.util.StringUtils;
+
+import java.util.Random;
 
 @SpringBootApplication
 @LineMessageHandler
@@ -50,14 +53,58 @@ public class EchoApplication {
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
         log.info("event: {}", event);
 
-        Source source = event.getSource();
+        String inputText = event.getMessage().getText();
 
-        if (source instanceof UserSource) {
+        String outputText = null;
 
-            log.info("getSenderId={}, getUserId={}", source.getSenderId(), source.getUserId());
+        if (inputText.indexOf("กลับ") > -1 && inputText.indexOf("บ้าน") > -1) {
+
+            int value = getRandomNumber(64);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "งานเสร็จแล้วเหรอจะกลับบ้านอ่ะ";
+                    break;
+                case 1:
+                    outputText = "ได้งานได้การยังวันนี้";
+                    break;
+                default:
+                    outputText = "กลับด้วยๆ";
+                    break;
+            }
+        }
+
+        if (inputText.indexOf("กิน") > -1 && inputText.indexOf("ข้าว") > -1) {
+
+            int value = getRandomNumber(32);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ป่ะๆ กินไรกันดี";
+                    break;
+                case 1:
+                    outputText = "กินอยู่นั้น งานการไม่เดินสักที";
+                    break;
+                default:
+                    outputText = "ไม่หิวอ่ะ";
+                    break;
+            }
+        }
+
+        if (inputText.indexOf("สวัสดี") > -1 && inputText.indexOf("หวัดดี") > -1) {
+            outputText = "หวัดดีจ้า เรา Tbot เอง";
+        }
+
+        if (inputText.indexOf("pantip.com") > -1 ) {
+            outputText = "ขอตัวไปเผือก...ที่พันดิปแป๊รบบ...";
+        }
+
+        if (outputText != null && outputText.length() > 0) {
             final BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(event.getReplyToken(),
-                            singletonList(new TextMessage(event.getMessage().getText()))))
+                            singletonList(new TextMessage(outputText))))
                     .get();
             log.info("Sent messages: {}", apiResponse);
         }
@@ -65,6 +112,12 @@ public class EchoApplication {
 
     @EventMapping
     public void defaultMessageEvent(Event event) {
-        System.out.println("event: " + event);
+        log.info("event: {}", event);
     }
+
+    private int getRandomNumber(int max) {
+        Random rand = new Random();
+        return rand.nextInt(max);
+    }
+
 }
