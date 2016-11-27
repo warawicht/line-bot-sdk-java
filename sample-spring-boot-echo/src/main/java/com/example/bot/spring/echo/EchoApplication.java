@@ -90,7 +90,8 @@ public class EchoApplication {
         }
 
         if (((inputText.indexOf("สวัสดี") > -1 || inputText.indexOf("หวัดดี") > -1))
-                || ((inputText.indexOf("ใคร") > -1) && ((inputText.indexOf("Tbot") > -1) || (inputText.indexOf("tbot") > -1)))) {
+                || (((inputText.indexOf("ใคร") > -1) || (inputText.indexOf("ครัย") > -1))
+                && ((inputText.indexOf("Tbot") > -1) || (inputText.indexOf("tbot") > -1)))) {
 
             int value = getRandomNumber(12);
             int modValue = value % 3;
