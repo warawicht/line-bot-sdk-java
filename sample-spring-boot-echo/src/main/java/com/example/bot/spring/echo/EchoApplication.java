@@ -52,17 +52,14 @@ public class EchoApplication {
 
         Source source = event.getSource();
 
-        if(source instanceof UserSource){
+        if (source instanceof UserSource) {
 
-            source.getSenderId();
             log.info("getSenderId={}, getUserId={}", source.getSenderId(), source.getUserId());
-
             final BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(event.getReplyToken(),
                             singletonList(new TextMessage(event.getMessage().getText()))))
                     .get();
             log.info("Sent messages: {}", apiResponse);
-
         }
     }
 
