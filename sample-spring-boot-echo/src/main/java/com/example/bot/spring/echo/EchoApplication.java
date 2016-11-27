@@ -16,15 +16,6 @@
 
 package com.example.bot.spring.echo;
 
-import static java.util.Collections.singletonList;
-
-import com.linecorp.bot.model.event.source.Source;
-import com.linecorp.bot.model.event.source.UserSource;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.linecorp.bot.client.LineMessagingClient;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.Event;
@@ -34,9 +25,14 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-import org.springframework.util.StringUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Random;
+
+import static java.util.Collections.singletonList;
 
 @SpringBootApplication
 @LineMessageHandler
@@ -51,7 +47,7 @@ public class EchoApplication {
 
     @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
-        log.info("event: {}", event);
+        //log.info("event: {}", event);
 
         String inputText = event.getMessage().getText();
 
@@ -173,13 +169,13 @@ public class EchoApplication {
                     .replyMessage(new ReplyMessage(event.getReplyToken(),
                             singletonList(new TextMessage(outputText))))
                     .get();
-            log.info("Sent messages: {}", apiResponse);
+            //log.info("Sent messages: {}", apiResponse);
         }
     }
 
     @EventMapping
     public void defaultMessageEvent(Event event) {
-        log.info("event: {}", event);
+        //log.info("event: {}", event);
     }
 
     private int getRandomNumber(int max) {
