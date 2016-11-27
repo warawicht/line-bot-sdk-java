@@ -18,6 +18,9 @@ package com.example.bot.spring.echo;
 
 import static java.util.Collections.singletonList;
 
+import com.linecorp.bot.model.event.source.Source;
+import com.linecorp.bot.model.event.source.UserSource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,6 +37,7 @@ import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 
 @SpringBootApplication
 @LineMessageHandler
+@Slf4j
 public class EchoApplication {
     @Autowired
     private LineMessagingClient lineMessagingClient;
@@ -44,12 +48,22 @@ public class EchoApplication {
 
     @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws Exception {
-        System.out.println("event: " + event);
-        final BotApiResponse apiResponse = lineMessagingClient
-                .replyMessage(new ReplyMessage(event.getReplyToken(),
-                                               singletonList(new TextMessage(event.getMessage().getText()))))
-                .get();
-        System.out.println("Sent messages: " + apiResponse);
+        log.info("event: {}", event);
+
+        Source source = event.getSource();
+
+        if(source instanceof UserSource){
+
+            source.getSenderId();
+            log.info("getSenderId={}, getUserId={}", source.getSenderId(), source.getUserId());
+
+            final BotApiResponse apiResponse = lineMessagingClient
+                    .replyMessage(new ReplyMessage(event.getReplyToken(),
+                            singletonList(new TextMessage(event.getMessage().getText()))))
+                    .get();
+            log.info("Sent messages: {}", apiResponse);
+
+        }
     }
 
     @EventMapping
