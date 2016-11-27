@@ -93,13 +93,80 @@ public class EchoApplication {
             }
         }
 
-        if (inputText.indexOf("สวัสดี") > -1 && inputText.indexOf("หวัดดี") > -1) {
-            outputText = "หวัดดีจ้า เรา Tbot เอง";
+        if (((inputText.indexOf("สวัสดี") > -1 || inputText.indexOf("หวัดดี") > -1))
+                || ((inputText.indexOf("ใคร") > -1) && ((inputText.indexOf("Tbot") > -1) || (inputText.indexOf("tbot") > -1)))) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ดีจ๊ะ";
+                    break;
+                case 1:
+                    outputText = "ไม่บอก";
+                    break;
+                default:
+                    outputText = "หวัดดีจ้า...เรา Tbot เอง";
+                    break;
+            }
         }
 
-        if (inputText.indexOf("pantip.com") > -1 ) {
-            outputText = "ขอตัวไปเผือก...ที่พันดิปแป๊รบบ...";
+        if (inputText.indexOf("pantip.com") > -1) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ชอบเผือกกันจริง";
+                    break;
+                case 1:
+                    outputText = "อ่านแต่ พันทิป งานเสร็จแล้วเหรอ";
+                    break;
+                default:
+                    outputText = "ขอตัวไปเผือก...ที่พันดิปแป๊รบบ...";
+                    break;
+            }
+
         }
+
+        if (inputText.indexOf("facebook") > -1) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ชอบส่องกันจริง";
+                    break;
+                case 1:
+                    outputText = "เล่นแต่ เฟส งานการไม่ทำ";
+                    break;
+                default:
+                    outputText = "ขอตัวไปส่องเฟสสเปปปป";
+                    break;
+            }
+        }
+
+        if (inputText.indexOf("วี") > -1 && inputText.indexOf("ไม่") > -1 && (inputText.indexOf("มา") > -1 || inputText.indexOf("อยู่") > -1)) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ว่างเลยดิ";
+                    break;
+                case 1:
+                    outputText = "หัวหน้าไม่อยู่ เราร่างเริง";
+                    break;
+                default:
+                    outputText = "สบายละ";
+                    break;
+            }
+        }
+
 
         if (outputText != null && outputText.length() > 0) {
             final BotApiResponse apiResponse = lineMessagingClient
