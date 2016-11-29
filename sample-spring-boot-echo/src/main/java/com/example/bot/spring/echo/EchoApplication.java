@@ -72,7 +72,7 @@ public class EchoApplication {
         if (inputText.indexOf("กลับ") > -1 && inputText.indexOf("บ้าน") > -1) {
 
             int value = getRandomNumber(64);
-            int modValue = value % 4;
+            int modValue = value % 5;
 
             switch (modValue) {
                 case 0:
@@ -83,6 +83,9 @@ public class EchoApplication {
                     break;
                 case 2:
                     outputText = "ดีๆ จะได้ประหยัดไฟ";
+                    break;
+                case 3:
+                    outputText = "หล็อบเริน";
                     break;
                 default:
                     outputText = "กลับด้วยๆ";
@@ -309,48 +312,54 @@ public class EchoApplication {
             }
         } else if (inputText.indexOf("คำแก้ว") > -1) {
             outputText = "อีคำแก้ว ลูกอีคำปองมันเป็นงูผี";
-        } else if (inputText.indexOf("ไม่ค่อยสบายตัว") > -1) {
-            outputText = inputText.replace("ไม่ค่อยสบายตัว", "เฉียวฉาวเชียวชาว");
-        } else if (inputText.indexOf("พูดจาโกหกกลับไปกลับมา") > -1) {
-            outputText = "สับปลับ";
-        } else if (inputText.indexOf("โกหก") > -1) {
-            outputText = inputText.replace("โกหก", "ขี้หก");
-        } else if (inputText.indexOf("อิจฉา") > -1) {
-            outputText = inputText.replace("อิจฉา", "หึงสา");
-        } else if (inputText.indexOf("รถถีบ") > -1) {
-            outputText = inputText.replace("รถถีบ", "รถจักรยาน");
-        } else if (inputText.indexOf("แหลง") > -1) {
-            outputText = "พี่แหลงชัดคำเดียวว่ารั้กเธอ";
-        } else if (inputText.indexOf("แลหวัน") > -1) {
-            int value = getRandomNumber(12);
-            int modValue = value % 2;
-            switch (modValue) {
-                case 0:
-                    outputText = inputText.replace("แลหวัน", "มอง");
-                    break;
-                default:
-                    outputText = inputText.replace("แลหวัน", "ดู");
-                    break;
-            }
-        } else if (inputText.indexOf("ทำไม") > -1) {
-            outputText = inputText.replace("ทำไม", "ไซร์");
-        } else if (inputText.indexOf("เป็นยังไงอีก") > -1) {
-            outputText = inputText.replace("เป็นยังไงอีก", "พันพรือหล้าว");
-        } else if (inputText.indexOf("ทุกวันนี้") > -1) {
-            outputText = inputText.replace("ทุกวันนี้", "คุมวัน");
-        } else if (inputText.indexOf("เวทนา") > -1) {
-            outputText = inputText.replace("เวทนา", "เวดนา");
-        } else if (inputText.indexOf("เอียง") > -1) {
-            outputText = inputText.replace("เอียง", "แคงควน");
-        } else if (inputText.indexOf("ไม่ตรง") > -1) {
-            outputText = inputText.replace("ไม่ตรง", "แคงควน");
         }
 
         //
 
         if (isDevGroup) {
             if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
-                outputText = "ไม่ทำโว้ย";
+
+                int value = getRandomNumber(12);
+                int modValue = value % 5;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ไม่ทำโว้ยย";
+                        break;
+                    case 1:
+                        outputText = "ไม่ทำโว้ยยย";
+                        break;
+                    case 2:
+                        outputText = "ไม่ทำโว้ยยยย";
+                        break;
+                    case 3:
+                        outputText = "ไม่ทำโว้ยยยย";
+                        break;
+                    default:
+                        outputText = "ไม่ทำโว้ย";
+                        break;
+                }
+            } else if (inputText.indexOf("แก้") > -1 && inputText.indexOf("ด้วย") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 5;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ไม่ทำโว้ยย";
+                        break;
+                    case 1:
+                        outputText = "ไม่ทำโว้ยยย";
+                        break;
+                    case 2:
+                        outputText = "ไม่ทำโว้ยยยย";
+                        break;
+                    case 3:
+                        outputText = "ไม่ทำโว้ยยยย";
+                        break;
+                    default:
+                        outputText = "ไม่ทำโว้ย";
+                        break;
+                }
             } else if (inputText.indexOf("เอา") > -1 && inputText.indexOf("ที่") > -1 && inputText.indexOf("สบาย") > -1 && inputText.indexOf("ใจ") > -1) {
                 outputText = "เรื่องของมรึง";
             } else if (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1) {
@@ -371,11 +380,16 @@ public class EchoApplication {
                     case 3:
                         outputText = "ไม่";
                         break;
+                    case 4:
+                        outputText = "อาไหยหย๋อ";
+                        break;
+                    case 5:
+                        outputText = "พี่วีครับ";
+                        break;
                     default:
                         outputText = "กวนตีนหย๋อ";
                         break;
                 }
-
             } else if (inputText.indexOf("คุย") > -1 && inputText.indexOf("งาน") > -1) {
 
                 int value = getRandomNumber(32);
@@ -404,6 +418,8 @@ public class EchoApplication {
                         outputText = "เออ ไม่รู้จักเวลาเลย";
                         break;
                 }
+            } else if (inputText.indexOf("พี่") > -1 && inputText.indexOf("บอล") > -1) {
+                outputText = "เรียกให้ถูก ด้วยนะ ต้องเป็น พี่บอนด์";
             } else if (inputText.indexOf("สกรัม") > -1 || inputText.indexOf("scrum") > -1) {
 
                 int value = getRandomNumber(12);
@@ -506,44 +522,183 @@ public class EchoApplication {
                         outputText = "สุภาพกันหน่อย";
                         break;
                 }
+            } else if (inputText.indexOf("แฟ") > -1) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "แฟๆ";
+                        break;
+                    case 1:
+                        outputText = "บัคกันไหม";
+                        break;
+                    default:
+                        outputText = "เลี้ยงแฟหน่อย";
+                        break;
+                }
+            } else if ((inputText.indexOf("ว่าง") > -1 && inputText.indexOf("งาน") > -1)
+                    || (inputText.indexOf("ไม่") > -1 && inputText.indexOf("มี") > -1 && inputText.indexOf("ทำ") > -1)
+                    || (inputText.indexOf("เบื่อ") > -1 && inputText.indexOf("จัง") > -1)
+                    ) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ว่างก็ไปช่วยคนอื่นทำงานสิ";
+                        break;
+                    case 1:
+                        outputText = "เค้าจ้างมาทำงานนะ";
+                        break;
+                    default:
+                        outputText = "งานการมีไม่ทำ";
+                        break;
+                }
+            } else if (inputText.indexOf("ไม่ค่อยสบายตัว") > -1) {
+                outputText = inputText.replace("ไม่ค่อยสบายตัว", "เฉียวฉาวเชียวชาว");
+            } else if (inputText.indexOf("พูดจาโกหกกลับไปกลับมา") > -1) {
+                outputText = "สับปลับ";
+            } else if (inputText.indexOf("โกหก") > -1) {
+                outputText = inputText.replace("โกหก", "ขี้หก");
+            } else if (inputText.indexOf("อิจฉา") > -1) {
+                outputText = inputText.replace("อิจฉา", "หึงสา");
+            } else if (inputText.indexOf("รถถีบ") > -1) {
+                outputText = inputText.replace("รถถีบ", "รถจักรยาน");
+            } else if (inputText.indexOf("แหลง") > -1) {
+                outputText = "พี่แหลงชัดคำเดียวว่ารั้กเธอ";
+            } else if (inputText.indexOf("แลหวัน") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 2;
+                switch (modValue) {
+                    case 0:
+                        outputText = inputText.replace("แลหวัน", "มอง");
+                        break;
+                    default:
+                        outputText = inputText.replace("แลหวัน", "ดู");
+                        break;
+                }
+            } else if (inputText.indexOf("ทำไม") > -1) {
+                outputText = inputText.replace("ทำไม", "ไซร์");
+            } else if (inputText.indexOf("เป็นยังไงอีก") > -1) {
+                outputText = inputText.replace("เป็นยังไงอีก", "พันพรือหล้าว");
+            } else if (inputText.indexOf("ทุกวันนี้") > -1) {
+                outputText = inputText.replace("ทุกวันนี้", "คุมวัน");
+            } else if (inputText.indexOf("เวทนา") > -1) {
+                outputText = inputText.replace("เวทนา", "เวดนา");
+            } else if (inputText.indexOf("เอียง") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 2;
+                switch (modValue) {
+                    case 0:
+                        outputText = inputText.replace("เอียง", "แคงควน");
+                        break;
+                    default:
+                        outputText = inputText.replace("เอียง", "เซน");
+                        break;
+                }
+            } else if (inputText.indexOf("ไม่ตรง") > -1) {
+                outputText = inputText.replace("ไม่ตรง", "แคงควน");
+            } else if (inputText.indexOf("ปัจุบัน") > -1) {
+                outputText = inputText.replace("ปัจุบัน", "ในโย");
+            } else if (inputText.indexOf("โมโห") > -1) {
+                outputText = inputText.replace("โมโห", "หวิบ");
+            } else if (inputText.indexOf("ไม่รู้เรือง") > -1) {
+                outputText = inputText.replace("ไม่รู้เรือง", "ไม่รู้หวัน");
+            } else if (inputText.indexOf("รองเท้า") > -1) {
+                outputText = inputText.replace("รองเท้า", "เกือก");
+            } else if (inputText.indexOf("หยอก") > -1 && inputText.indexOf("เล่น") > -1) {
+                outputText = "บ่าวหยอกนิน้อง";
+            } else if (inputText.indexOf("โง่") > -1) {
+                outputText = "อีโหว้งวก";
+            } else if (inputText.indexOf("เมื่อวานนี้") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 2;
+                switch (modValue) {
+                    case 0:
+                        outputText = inputText.replace("เมื่อวานนี้", "แต่วา");
+                        break;
+                    default:
+                        outputText = inputText.replace("เมื่อวานนี้", "แรกแต่วา");
+                        break;
+                }
+            } else if (inputText.indexOf("พรุ่งนี้") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 2;
+                switch (modValue) {
+                    case 0:
+                        outputText = inputText.replace("พรุ่งนี้", "ต่อเช้า");
+                        break;
+                    default:
+                        outputText = inputText.replace("พรุ่งนี้", "ต่อโพรก");
+                        break;
+                }
+            } else if (inputText.indexOf("วันมะรืน") > -1) {
+                outputText = inputText.replace("วันมะรืน", "ต่อรือ");
+            } else if (inputText.indexOf("ไม่") > -1 && inputText.indexOf("เต็ม") > -1 && (inputText.indexOf("เต็ง") > -1 || inputText.indexOf("บาท") > -1)) {
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+                switch (modValue) {
+                    case 0:
+                        outputText = "ข้าดหุ๊น";
+                        break;
+                    case 1:
+                        outputText = "เบา";
+                        break;
+                    default:
+                        outputText = "ฉ็อมฉ็อม";
+                        break;
+                }
+            } else if (inputText.indexOf("ทั้งหมด") > -1) {
+                outputText = inputText.replace("ทั้งหมด", "ทั้งเพ");
+            } else if (inputText.indexOf("ทั้งสิ้น") > -1) {
+                outputText = inputText.replace("ทั้งสิ้น", "ทั้งเพ");
+            } else if (inputText.indexOf("ใจ") > -1 && (inputText.indexOf("สะ") > -1 || inputText.indexOf("ถูก") > -1)) {
+                outputText = "ด่ายแหร่งอ็อก";
+            } else if (inputText.indexOf("ดุ") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+                switch (modValue) {
+                    case 0:
+                        outputText = "แง็ง";
+                        break;
+                    case 1:
+                        outputText = "ด้น";
+                        break;
+                    default:
+                        outputText = "ด่อน";
+                        break;
+                }
+            } else if (inputText.indexOf("ยาก") > -1 && inputText.indexOf("จน") > -1) {
+                int value = getRandomNumber(12);
+                int modValue = value % 4;
+                switch (modValue) {
+                    case 0:
+                        outputText = "หม้ายไหร ";
+                        break;
+                    case 1:
+                        outputText = "ม้ายหรั้ย";
+                        break;
+                    case 2:
+                        outputText = "ลอกอ";
+                        break;
+                    default:
+                        outputText = "เปลาๆ";
+                        break;
+                }
+            } else if (inputText.indexOf("ไม่มี") > -1) {
+                outputText = inputText.replace("ไม่มี", "หาม้าย");
+            } else if (inputText.indexOf("ยุ่ง") > -1 || inputText.indexOf("เสือก") > -1) {
+                outputText = "ทำถ้าว";
+            } else if (inputText.indexOf("เละ") > -1) {
+                outputText = "เนียนแจ็กแจ๊ก";
+            } else if (inputText.indexOf("เมื่อไหร่") > -1) {
+                outputText = inputText.replace("เมื่อไหร่", "ตอใด");
             }
-        } else if (inputText.indexOf("แฟ") > -1) {
 
-            int value = getRandomNumber(12);
-            int modValue = value % 3;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "แฟๆ";
-                    break;
-                case 1:
-                    outputText = "บัคกันไหม";
-                    break;
-                default:
-                    outputText = "เลี้ยงแฟหน่อย";
-                    break;
-            }
-        } else if ((inputText.indexOf("ว่าง") > -1 && inputText.indexOf("งาน") > -1)
-                || (inputText.indexOf("ไม่") > -1 && inputText.indexOf("มี") > -1 && inputText.indexOf("ทำ") > -1)
-                || (inputText.indexOf("เบื่อ") > -1 && inputText.indexOf("จัง") > -1)
-                ) {
-
-            int value = getRandomNumber(12);
-            int modValue = value % 3;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "ว่างก็ไปช่วยคนอื่นทำงานสิ";
-                    break;
-                case 1:
-                    outputText = "เค้าจ้างมาทำงานนะ";
-                    break;
-                default:
-                    outputText = "งานการมีไม่ทำ";
-                    break;
-            }
-        }
-
+        } //isDevGroup
 
         if (outputText != null && outputText.length() > 0) {
             final BotApiResponse apiResponse = lineMessagingClient
