@@ -58,6 +58,7 @@ public class EchoApplication {
         }
 
         Source source = event.getSource();
+        log.info("source: {}", source);
         boolean isDevGroup = false;
         if (source instanceof GroupSource) {
             //source: GroupSource(groupId=C4e0426cb20f0e72e671eb49d5a510d52, userId=null)
@@ -188,7 +189,7 @@ public class EchoApplication {
         } else if (inputText.indexOf("แอ้") > -1 && inputText.indexOf("สวย") > -1) {
 
             int value = getRandomNumber(12);
-            int modValue = value % 6;
+            int modValue = value % 8;
 
             switch (modValue) {
                 case 0:
@@ -205,6 +206,12 @@ public class EchoApplication {
                     break;
                 case 4:
                     outputText = "คุยเรื่องอื่นดีกว่า";
+                    break;
+                case 5:
+                    outputText = "หน้าตาดีไม่ช่วยอะไรเลย...";
+                    break;
+                case 6:
+                    outputText = "บางครั้ง การอธิบายก็ไม่ได้ช่วยให้ดีขึ้น แต่อาจจะทำให้แย่ลง เงียบและเย็นเข้าไว้จะดีกว่า";
                     break;
                 default:
                     outputText = "เปร่งประกายมีออร่ามาตั้งแต่หน้าประตูเลยทีเดียว";
@@ -312,11 +319,104 @@ public class EchoApplication {
             }
         } else if (inputText.indexOf("คำแก้ว") > -1) {
             outputText = "อีคำแก้ว ลูกอีคำปองมันเป็นงูผี";
+        } else if(inputText.length() == 4 && inputText.toLowerCase().indexOf("tbot") > -1){
+            int value = getRandomNumber(256);
+            int modValue = value % 128;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "เบ้าหน้าดี สติ๊กเกอร์อันเดียวเค้าก็ตอบ...";
+                    break;
+                case 1:
+                    outputText = "รักดีดี.ใครก็ต้องการ..รักนานนาน...ใครก็อยากมี";
+                    break;
+                case 2:
+                    outputText = "เงยหน้าสนใจคนข้างๆบ้างนะ";
+                    break;
+                case 3:
+                    outputText = "หัวมีไว้คั่นหูหรอคะ?";
+                    break;
+                case 4:
+                    outputText = "หน้าตาดีไม่ช่วยอะไรเลย...";
+                    break;
+                case 5:
+                    outputText = "ความเชื่อใจมีให้กันครั้งเดียวเนอะ...";
+                    break;
+                case 6:
+                    outputText = "คนแบบนี้ตายไปเป็นปุ๋ยต้นไม่ยังไม่อยากดูดซึมเลยค่ะ";
+                    break;
+                case 7:
+                    outputText = "นอกจากรักคุณแล้วผมก็ไม่เก่งอะไรเลย";
+                    break;
+                case 8:
+                    outputText = "สิ่งสำคัญของการเดินทางไม่ใช่จุดหมาย แต่อยู่ที่ระหว่างทางต่างหาก";
+                    break;
+                case 9:
+                    outputText = "ทำไมคนเราถึงล้ม เพื่อที่เราจะได้เรียนรู้การลุกขึ้นมาใหม่";
+                    break;
+                case 10:
+                    outputText = "Happiness is only real, when shared";
+                    break;
+                case 11:
+                    outputText = "You make me want to be a better man";
+                    break;
+                case 12:
+                    outputText = "ถ้าเราผ่านสิ่งที่เรากลัวที่สุดไปได้....ต่อไปนี้เราจะไม่กลัวอะไรอีก";
+                    break;
+                case 13:
+                    outputText = "ต้องใช้ความแกร่งกล้าอย่างมากที่จะยืนหยัดต่อสู้ศัตรู แต่ต้องมีความกล้ามากกว่านั้นที่จะยืนหยัดต่อเพื่อนของเรา";
+                    break;
+                case 14:
+                    outputText = "ความกลัวเป็นหนทางสู่ด้านมืด ความกลัวทำให้โกรธ โกรธทำให้เกลียด เกลียดทำให้เกิดทุกข์";
+                    break;
+                case 15:
+                    outputText = "คุณไม่อาจเปลี่ยนแปลงคนอื่นได้ โดยไม่ทำลายตัวตนเดิมของเขา";
+                    break;
+                case 16:
+                    outputText = "หากก้าวเท้าไปบนถนน แล้วไม่ก้าวต่อ เราจะไม่มีวันรุ้ว่าถนนไปสิ้นสุดที่ตรงไหน";
+                    break;
+                case 17:
+                    outputText = "นายก็ต้องตาย ฉันก็ต้องตาย เราทุกคนก็ต้องตาย.....แต่ไม่ใช่วันนี้";
+                    break;
+                case 18:
+                    outputText = "ผมมองไม่เห็นตัวตนของคุณตอนคุณอยู่ที่นี่ ตอนนี้คุณไม่อยู่แล้ว ผมกลับเห็นคุณทุกหนทุกแห่ง";
+                    break;
+                case 19:
+                    outputText = "การฉลองและการยินดีกับความสำเร็จเป็นเรื่องที่ดี แต่สิ่งสำคัญกว่านั้นคือการเรียนรู้จากความผิดพลาด";
+                    break;
+                case 20:
+                    outputText = "ลูกค้าที่แสดงความไม่พอใจ นั่นล่ะคือแหล่งเรียนรู้ที่ดีที่สุด";
+                    break;
+                case 21:
+                    outputText = "คนทุกคนจำเป็นต้องมี “โค้ช” ไม่ว่าคุณจะเป็น นักเล่นบาสเกตบอล นักเทนนิส นักกีฬายิมนาสติก และอื่นๆ";
+                    break;
+                case 22:
+                    outputText = "ถ้าทำให้มันดีไม่ได้ อย่างน้อยก็ทำให้มันออกมาดูดีสิ";
+                    break;
+                case 23:
+                    outputText = "เราต้องการผู้คนที่พร้อมจะแสดงความคิดเห็น และนั่นคือวิธีเรียนรู้ของเรา";
+                    break;
+                case 24:
+                    outputText = "ถ้าคุณอยากให้ลูกคุณเก่ง คุณต้องหาทางให้ลูกได้เจอ ครูที่สุดยอด “ไม่ใช่โรงเรียนที่สุดยอด”";
+                    break;
+                case 25:
+                    outputText = "ผมเชื่อในนวัตกรรม และหนทางที่คุณจะได้ นวัตกรรม นั้นได้มาจากการศึกษาในเรื่องเบสิคพื้นฐาน";
+                    break;
+                case 26:
+                    outputText = "ชีวิตมันไม่มีความยุติธรรม จงยอมรับและเคยชินกับมันซะ";
+                    break;
+                case 27:
+                    outputText = "ถ้าคุณไม่ชอบเทคโนโลยี ชีวิตคุณมีปัญหาแน่!";
+                    break;
+                default:
+                    outputText = "";
+                    break;
+            }
         }
 
         //
 
-        if (isDevGroup) {
+        else if (isDevGroup) {
             if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
 
                 int value = getRandomNumber(12);
