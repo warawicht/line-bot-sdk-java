@@ -175,7 +175,7 @@ public class EchoApplication {
                     break;
             }
         } else if (inputText.indexOf("วี") > -1 && ((inputText.indexOf("ไม่") > -1 && (inputText.indexOf("มา") > -1 || inputText.indexOf("อยู่") > -1))
-                                                    || (inputText.indexOf("ลา") > -1))) {
+                || (inputText.indexOf("ลา") > -1))) {
 
             int value = getRandomNumber(12);
             int modValue = value % 5;
@@ -206,7 +206,7 @@ public class EchoApplication {
         } else if (inputText.indexOf("แอ้") > -1 && inputText.indexOf("สวย") > -1) {
 
             int value = getRandomNumber(12);
-            int modValue = value % 3;
+            int modValue = value % 6;
 
             switch (modValue) {
                 case 0:
@@ -215,6 +215,15 @@ public class EchoApplication {
                 case 1:
                     outputText = "มีใครจะสวยเท่าอีก";
                     break;
+                case 2:
+                    outputText = "สุดๆ";
+                    break;
+                case 3:
+                    outputText = "คิดดีๆ";
+                    break;
+                case 4:
+                    outputText = "คุยเรื่องอื่นดีกว่า";
+                    break;
                 default:
                     outputText = "เปร่งประกายมีออร่ามาตั้งแต่หน้าประตูเลยทีเดียว";
                     break;
@@ -222,7 +231,7 @@ public class EchoApplication {
         } else if (inputText.indexOf("แอ้") > -1 && inputText.indexOf("อ้วน") > -1) {
 
             int value = getRandomNumber(12);
-            int modValue = value % 4;
+            int modValue = value % 5;
 
             switch (modValue) {
                 case 0:
@@ -231,14 +240,20 @@ public class EchoApplication {
                 case 1:
                     outputText = "ไม่จริงหรอก แค่เสื้อมันตัวเล็กลงแค่นั้นเอง";
                     break;
+                case 2:
+                    outputText = "แบ่งให้คุณสามีบ้างนะ";
+                    break;
+                case 3:
+                    outputText = "ไม่จริงหรอก";
+                    break;
                 default:
                     outputText = "ออกกำลังกายกันเถอะก่อนที่จะ...เหมือน...";
                     break;
             }
-        } else if (inputText.indexOf("ด่วย") > -1) {
+        } else if (inputText.indexOf("ด่วย") > -1 || inputText.indexOf("เคด่วย") > -1) {
 
             int value = getRandomNumber(12);
-            int modValue = value % 4;
+            int modValue = value % 10;
 
             switch (modValue) {
                 case 0:
@@ -246,6 +261,27 @@ public class EchoApplication {
                     break;
                 case 1:
                     outputText = "buddy ปีนี้ร่วมด้วยช่วยกัน take พี่ด่วย กันด้วยนะจ๊ะ";
+                    break;
+                case 2:
+                    outputText = "มีสัมมาคาราเต้ กันหน่อยนะ";
+                    break;
+                case 3:
+                    outputText = "ซุุปปรามแอ้หน่อยนะ";
+                    break;
+                case 4:
+                    outputText = "มีลูกมีหลาน จะตั้งชื่อ คิดเยอะๆกันหน่อยนะ";
+                    break;
+                case 5:
+                    outputText = "ห้ามผวน";
+                    break;
+                case 6:
+                    outputText = "คุณพี่target";
+                    break;
+                case 7:
+                    outputText = "เคารพหัวหน้ากันมาก";
+                    break;
+                case 8:
+                    outputText = "อย่าให้อุ้มได้ด่า";
                     break;
                 default:
                     outputText = "ทำอะไรพังอีกแล้ว!!!";
@@ -284,6 +320,36 @@ public class EchoApplication {
                     outputText = "เรียกแอ้มาเลย";
                     break;
             }
+        } else if (inputText.indexOf("คุย") > -1 && inputText.indexOf("งาน") > -1) {
+
+            int value = getRandomNumber(32);
+            int modValue = value % 6;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "สร้างห้องใหม่นะ ถ้าจะคุยงาน";
+                    break;
+                case 1:
+                    outputText = "ไปเล่นกันตรงโน้น นะ";
+                    break;
+                case 2:
+                    outputText = "พรุ่งนี้ค่อยคุย";
+                    break;
+                case 3:
+                    outputText = "ไม่ทำโว้ย";
+                    break;
+                case 4:
+                    outputText = "ไม่คุยโว้ย";
+                    break;
+                case 5:
+                    outputText = "เกร็งใจอุ้มบ้างนะ";
+                    break;
+                default:
+                    outputText = "เออ ไม่รู้จักเวลาเลย";
+                    break;
+            }
+        } else if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
+            outputText = "ไม่ทำโว้ย";
         }
 
         if (outputText != null && outputText.length() > 0) {
