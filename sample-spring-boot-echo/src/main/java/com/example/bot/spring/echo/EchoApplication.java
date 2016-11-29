@@ -293,17 +293,23 @@ public class EchoApplication {
             } else if (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1) {
 
                 int value = getRandomNumber(12);
-                int modValue = value % 4;
+                int modValue = value % 10;
 
                 switch (modValue) {
                     case 0:
                         outputText = "ยังไม่ว่าง";
                         break;
                     case 1:
-                        outputText = "อย่างพึ่งกวน";
+                        outputText = "อย่าพึ่งกวน";
+                        break;
+                    case 2:
+                        outputText = "เล่นเกมอยู่";
+                        break;
+                    case 3:
+                        outputText = "ไม่";
                         break;
                     default:
-                        outputText = "เล่นเกมอยู่";
+                        outputText = "กวนตีนหย๋อ";
                         break;
                 }
 
@@ -384,13 +390,99 @@ public class EchoApplication {
                         outputText = "ขอตัวไปส่องเฟสกันน๊า";
                         break;
                 }
+            } else if ((inputText.indexOf("เล่น") > -1 && inputText.indexOf("พ่อ") > -1)
+                    || (inputText.indexOf("หยาบ") > -1 && inputText.indexOf("คาย") > -1)
+                    || (inputText.indexOf("ด่า") > -1)
+                    || (inputText.indexOf("ควาย") > -1)
+                    || (inputText.indexOf("สาด") > -1)
+                    || (inputText.indexOf("แสด") > -1)
+                    || (inputText.indexOf("สัด") > -1)
+                    || (inputText.indexOf("แม่ง") > -1)
+                    || (inputText.indexOf("เหี้ย") > -1)
+                    || (inputText.indexOf("โว้ย") > -1)
+                    || (inputText.indexOf("มึง") > -1)
+                    || (inputText.indexOf("มรึง") > -1)
+                    || (inputText.indexOf("กู") > -1)
+                    ) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 10;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "อย่าหยาบคาย";
+                        break;
+                    case 1:
+                        outputText = "การศึกษาไม่ช่วยอะไร";
+                        break;
+                    case 2:
+                        outputText = "หยาบแบบนี้ไปต่อไม่ถูกเลย";
+                        break;
+                    case 3:
+                        outputText = "พูดกันดีๆก็ได้นะ";
+                        break;
+                    case 4:
+                        outputText = "ได้ยินแบบนี้ขึ้นเลย";
+                        break;
+                    case 5:
+                        outputText = "หยาบจริง";
+                        break;
+                    case 6:
+                        outputText = "ดูคำพูดคำจาสิ";
+                        break;
+                    case 7:
+                        outputText = "บวกกันไหม";
+                        break;
+                    case 8:
+                        outputText = "สนุกปากเลยนะ";
+                        break;
+                    case 9:
+                        outputText = "ครับ คะ ใช่เป็นไหม";
+                        break;
+                    default:
+                        outputText = "สุภาพกันหน่อย";
+                        break;
+                }
+            }
+        } else if (inputText.indexOf("แฟ") > -1) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "แฟๆ";
+                    break;
+                case 1:
+                    outputText = "บัคกันไหม";
+                    break;
+                default:
+                    outputText = "เลี้ยงแฟหน่อย";
+                    break;
+            }
+        } else if ((inputText.indexOf("ว่าง") > -1 && inputText.indexOf("งาน") > -1)
+                || (inputText.indexOf("ไม่") > -1 && inputText.indexOf("มี") > -1 && inputText.indexOf("ทำ") > -1)
+                || (inputText.indexOf("เบื่อ") > -1 && inputText.indexOf("จัง") > -1)
+                ) {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 3;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ว่างก็ไปช่วยคนอื่นทำงานสิ";
+                    break;
+                case 1:
+                    outputText = "เค้าจ้างมาทำงานนะ";
+                    break;
+                default:
+                    outputText = "งานการมีไม่ทำ";
+                    break;
             }
         }
 
 
-        if (outputText != null && outputText.length() > 0)
-
-        {
+        if (outputText != null && outputText.length() > 0) {
             final BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(event.getReplyToken(),
                             singletonList(new TextMessage(outputText))))
