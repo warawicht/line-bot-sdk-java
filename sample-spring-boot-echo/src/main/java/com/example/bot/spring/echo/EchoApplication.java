@@ -33,6 +33,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import static java.util.Collections.singletonList;
@@ -67,10 +69,10 @@ public class EchoApplication {
             if ("C4e0426cb20f0e72e671eb49d5a510d52".equals(groupSource.getGroupId())) {
                 isEnableAllMessage = true;
             }
-        } else if( source instanceof UserSource){
+        } else if (source instanceof UserSource) {
             //source: UserSource(userId=U6de4a4a739436c670a60d28961da2123)
             UserSource userSource = (UserSource) source;
-            if("U6de4a4a739436c670a60d28961da2123".equals(userSource.getUserId())){
+            if ("U6de4a4a739436c670a60d28961da2123".equals(userSource.getUserId())) {
                 isEnableAllMessage = true;
             }
         }
@@ -326,7 +328,7 @@ public class EchoApplication {
             }
         } else if (inputText.indexOf("คำแก้ว") > -1) {
             outputText = "อีคำแก้ว ลูกอีคำปองมันเป็นงูผี";
-        } else if(inputText.length() == 4 && inputText.toLowerCase().indexOf("tbot") > -1){
+        } else if (inputText.length() == 4 && inputText.toLowerCase().indexOf("tbot") > -1) {
             int value = getRandomNumber(256);
             int modValue = value % 30;
 
@@ -425,6 +427,26 @@ public class EchoApplication {
                     outputText = "";
                     break;
             }
+        } else if (inputText.length() < 20) {
+            String lowercase = inputText.toLowerCase();
+
+            if (lowercase.indexOf("order") > -1 && lowercase.indexOf("type") > -1) {
+                String stringOrderType = inputText.replace("order", "").replace("type", "");
+                outputText = "ไม่รู้จัก order type " + stringOrderType + "อ่ะ";
+                try {
+                    int intOrderType = Integer.parseInt(stringOrderType);
+                    switch (intOrderType) {
+                        case 1:
+                            outputText = "1 : Activation : extId=ACTIVATION";
+                            break;
+                        case 2:
+                            outputText = "2 : ChangePP(Agreement/Subscriber) : extId=CHANGE_PP ";
+                            break;
+                    }
+                } catch (Exception ex) {
+                    outputText = ex.getMessage();
+                }
+            }
         }
 
         //
@@ -446,7 +468,7 @@ public class EchoApplication {
                         outputText = "ไม่ทำโว้ยยยย";
                         break;
                     case 3:
-                        outputText = "ไม่ทำโว้ยยยย";
+                        outputText = "ไม่ทำโว้ยย..";
                         break;
                     default:
                         outputText = "ไม่ทำโว้ย";
