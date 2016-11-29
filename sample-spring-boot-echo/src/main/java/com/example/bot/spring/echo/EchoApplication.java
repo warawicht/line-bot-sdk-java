@@ -23,6 +23,7 @@ import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.GroupSource;
 import com.linecorp.bot.model.event.source.Source;
+import com.linecorp.bot.model.event.source.UserSource;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
@@ -53,18 +54,24 @@ public class EchoApplication {
 
         String inputText = event.getMessage().getText();
 
-        if (inputText == null || inputText.length() > 100) {
+        if (inputText == null || inputText.length() > 50) {
             return;
         }
 
         Source source = event.getSource();
-        log.info("source: {}", source);
-        boolean isDevGroup = false;
+        log.info("SenderId:{}, source:{}", source.getSenderId(), source);
+        boolean isEnableAllMessage = false;
         if (source instanceof GroupSource) {
             //source: GroupSource(groupId=C4e0426cb20f0e72e671eb49d5a510d52, userId=null)
             GroupSource groupSource = (GroupSource) source;
             if ("C4e0426cb20f0e72e671eb49d5a510d52".equals(groupSource.getGroupId())) {
-                isDevGroup = true;
+                isEnableAllMessage = true;
+            }
+        } else if( source instanceof UserSource){
+            //source: UserSource(userId=U6de4a4a739436c670a60d28961da2123)
+            UserSource userSource = (UserSource) source;
+            if("U6de4a4a739436c670a60d28961da2123".equals(userSource.getUserId())){
+                isEnableAllMessage = true;
             }
         }
 
@@ -321,7 +328,7 @@ public class EchoApplication {
             outputText = "อีคำแก้ว ลูกอีคำปองมันเป็นงูผี";
         } else if(inputText.length() == 4 && inputText.toLowerCase().indexOf("tbot") > -1){
             int value = getRandomNumber(256);
-            int modValue = value % 128;
+            int modValue = value % 30;
 
             switch (modValue) {
                 case 0:
@@ -408,6 +415,12 @@ public class EchoApplication {
                 case 27:
                     outputText = "ถ้าคุณไม่ชอบเทคโนโลยี ชีวิตคุณมีปัญหาแน่!";
                     break;
+                case 28:
+                    outputText = "ไม่ว่าผมจะอยู่ที่ไหน ไม่ว่าในสำนักงาน บ้าน หรือบนถนน ผมไม่พลาดที่จะพกหนังสือไปอ่านด้วยเสมอ";
+                    break;
+                case 29:
+                    outputText = "มันต้องใช้ 20 ปีในการสร้างชื่อเสียง แต่สามารถใช้แค่ 5 นาที ในการทำลาย";
+                    break;
                 default:
                     outputText = "";
                     break;
@@ -416,7 +429,7 @@ public class EchoApplication {
 
         //
 
-        else if (isDevGroup) {
+        else if (isEnableAllMessage) {
             if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
 
                 int value = getRandomNumber(12);
@@ -798,7 +811,7 @@ public class EchoApplication {
                 outputText = inputText.replace("เมื่อไหร่", "ตอใด");
             }
 
-        } //isDevGroup
+        } //isEnableAllMessage
 
         if (outputText != null && outputText.length() > 0) {
             final BotApiResponse apiResponse = lineMessagingClient
