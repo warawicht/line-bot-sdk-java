@@ -58,7 +58,16 @@ public class EchoApplication {
         }
 
         Source source = event.getSource();
-        log.info("source: {}", source);
+        boolean isDevGroup = false;
+        if (source instanceof GroupSource) {
+            GroupSource groupSource = (GroupSource) source;
+            if ("C4e0426cb20f0e72e671eb49d5a510d52".equals(groupSource.getGroupId())) {
+                isDevGroup = true;
+            }
+        }
+
+        //log.info("source: {}", source);
+        //source: GroupSource(groupId=C4e0426cb20f0e72e671eb49d5a510d52, userId=null)
 
         String outputText = null;
 
@@ -353,14 +362,12 @@ public class EchoApplication {
                     outputText = "เออ ไม่รู้จักเวลาเลย";
                     break;
             }
-        } else if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
+        } else if (isDevGroup && (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1)))) {
             outputText = "ไม่ทำโว้ย";
         } else if (inputText.indexOf("เอา") > -1 && inputText.indexOf("ที่") > -1 && inputText.indexOf("สบาย") > -1 && inputText.indexOf("ใจ") > -1) {
             outputText = "เรื่องของมรึง";
 
-        } else if (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1)
-
-        {
+        } else if (isDevGroup && (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1)) {
 
             int value = getRandomNumber(12);
             int modValue = value % 4;
