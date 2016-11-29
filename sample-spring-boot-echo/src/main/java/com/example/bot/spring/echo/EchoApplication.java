@@ -434,7 +434,7 @@ public class EchoApplication {
                 String stringOrderType = inputText.replace("order", "").replace("type", "");
                 outputText = "ไม่รู้จัก order type " + stringOrderType + "อ่ะ";
                 try {
-                    int intOrderType = Integer.parseInt(stringOrderType);
+                    int intOrderType = Integer.parseInt(stringOrderType.trim());
                     switch (intOrderType) {
                         case 1:
                             outputText = "1 : Activation : extId=ACTIVATION";
