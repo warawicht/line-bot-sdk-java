@@ -283,7 +283,70 @@ public class EchoApplication {
                     break;
             }
 
+        } else if (inputText.indexOf("เตะ") > -1) {
+            int value = getRandomNumber(12);
+            int modValue = value % 10;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "สงสารบอทตาดำๆเถอะ";
+                    break;
+                case 1:
+                    outputText = "เค้าขอโต๊ด";
+                    break;
+                case 2:
+                    outputText = "คนเราเกิดมาตายเพียงครั้งเดียวจะกลัวทำไม";
+                    break;
+                case 3:
+                    outputText = "บอทก็มีหัวใจนะ";
+                    break;
+                case 4:
+                    outputText = "ได้โปรด";
+                    break;
+                default:
+                    outputText = "จิตใจนายทำด้วยอะไร ขนาดบอทยังรังแก";
+                    break;
+            }
+        } else if (inputText.indexOf("คำแก้ว") > -1) {
+            outputText = "อีคำแก้ว ลูกอีคำปองมันเป็นงูผี";
+        } else if (inputText.indexOf("ไม่ค่อยสบายตัว") > -1) {
+            outputText = inputText.replace("ไม่ค่อยสบายตัว", "เฉียวฉาวเชียวชาว");
+        } else if (inputText.indexOf("พูดจาโกหกกลับไปกลับมา") > -1) {
+            outputText = "สับปลับ";
+        } else if (inputText.indexOf("โกหก") > -1) {
+            outputText = inputText.replace("โกหก", "ขี้หก");
+        } else if (inputText.indexOf("อิจฉา") > -1) {
+            outputText = inputText.replace("อิจฉา", "หึงสา");
+        } else if (inputText.indexOf("รถถีบ") > -1) {
+            outputText = inputText.replace("รถถีบ", "รถจักรยาน");
+        } else if (inputText.indexOf("แหลง") > -1) {
+            outputText = "พี่แหลงชัดคำเดียวว่ารั้กเธอ";
+        } else if (inputText.indexOf("แลหวัน") > -1) {
+            int value = getRandomNumber(12);
+            int modValue = value % 2;
+            switch (modValue) {
+                case 0:
+                    outputText = inputText.replace("แลหวัน", "มอง");
+                    break;
+                default:
+                    outputText = inputText.replace("แลหวัน", "ดู");
+                    break;
+            }
+        } else if (inputText.indexOf("ทำไม") > -1) {
+            outputText = inputText.replace("ทำไม", "ไซร์");
+        } else if (inputText.indexOf("เป็นยังไงอีก") > -1) {
+            outputText = inputText.replace("เป็นยังไงอีก", "พันพรือหล้าว");
+        } else if (inputText.indexOf("ทุกวันนี้") > -1) {
+            outputText = inputText.replace("ทุกวันนี้", "คุมวัน");
+        } else if (inputText.indexOf("เวทนา") > -1) {
+            outputText = inputText.replace("เวทนา", "เวดนา");
+        } else if (inputText.indexOf("เอียง") > -1) {
+            outputText = inputText.replace("เอียง", "แคงควน");
+        } else if (inputText.indexOf("ไม่ตรง") > -1) {
+            outputText = inputText.replace("ไม่ตรง", "แคงควน");
         }
+
+        //
 
         if (isDevGroup) {
             if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
