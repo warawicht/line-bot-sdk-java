@@ -21,6 +21,8 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.model.event.MessageEvent;
 import com.linecorp.bot.model.event.message.TextMessageContent;
+import com.linecorp.bot.model.event.source.GroupSource;
+import com.linecorp.bot.model.event.source.Source;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
@@ -54,6 +56,9 @@ public class EchoApplication {
         if (inputText == null || inputText.length() > 100) {
             return;
         }
+
+        Source source = event.getSource();
+        log.info("source: {}", source);
 
         String outputText = null;
 
@@ -266,7 +271,7 @@ public class EchoApplication {
                     outputText = "มีสัมมาคาราเต้ กันหน่อยนะ";
                     break;
                 case 3:
-                    outputText = "ซุุปปรามแอ้หน่อยนะ";
+                    outputText = "ซุปปรามแอ้หน่อยนะ";
                     break;
                 case 4:
                     outputText = "มีลูกมีหลาน จะตั้งชื่อ คิดเยอะๆกันหน่อยนะ";
@@ -350,15 +355,40 @@ public class EchoApplication {
             }
         } else if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
             outputText = "ไม่ทำโว้ย";
+        } else if (inputText.indexOf("เอา") > -1 && inputText.indexOf("ที่") > -1 && inputText.indexOf("สบาย") > -1 && inputText.indexOf("ใจ") > -1) {
+            outputText = "เรื่องของมรึง";
+
+        } else if (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1)
+
+        {
+
+            int value = getRandomNumber(12);
+            int modValue = value % 4;
+
+            switch (modValue) {
+                case 0:
+                    outputText = "ยังไม่ว่าง";
+                    break;
+                case 1:
+                    outputText = "อย่างพึ่งกวน";
+                    break;
+                default:
+                    outputText = "เล่นเกมอยู่";
+                    break;
+            }
+
         }
 
-        if (outputText != null && outputText.length() > 0) {
+        if (outputText != null && outputText.length() > 0)
+
+        {
             final BotApiResponse apiResponse = lineMessagingClient
                     .replyMessage(new ReplyMessage(event.getReplyToken(),
                             singletonList(new TextMessage(outputText))))
                     .get();
             //log.info("Sent messages: {}", apiResponse);
         }
+
     }
 
     @EventMapping
