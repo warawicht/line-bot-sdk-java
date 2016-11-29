@@ -60,14 +60,12 @@ public class EchoApplication {
         Source source = event.getSource();
         boolean isDevGroup = false;
         if (source instanceof GroupSource) {
+            //source: GroupSource(groupId=C4e0426cb20f0e72e671eb49d5a510d52, userId=null)
             GroupSource groupSource = (GroupSource) source;
             if ("C4e0426cb20f0e72e671eb49d5a510d52".equals(groupSource.getGroupId())) {
                 isDevGroup = true;
             }
         }
-
-        //log.info("source: {}", source);
-        //source: GroupSource(groupId=C4e0426cb20f0e72e671eb49d5a510d52, userId=null)
 
         String outputText = null;
 
@@ -153,39 +151,6 @@ public class EchoApplication {
                     break;
                 default:
                     outputText = "หวัดดีจ้า...เรา Tbot เอง";
-                    break;
-            }
-        } else if (inputText.indexOf("pantip.com") > -1) {
-
-            int value = getRandomNumber(12);
-            int modValue = value % 3;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "ชอบเผือกกันจริง";
-                    break;
-                case 1:
-                    outputText = "อ่านแต่ พันทิป งานเสร็จแล้วเหรอ";
-                    break;
-                default:
-                    outputText = "ขอตัวไปเผือก...ที่พันดิปแป๊รบบ...";
-                    break;
-            }
-
-        } else if (inputText.indexOf("facebook") > -1) {
-
-            int value = getRandomNumber(12);
-            int modValue = value % 3;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "ชอบส่องกันจริง";
-                    break;
-                case 1:
-                    outputText = "เล่นแต่ เฟส งานการไม่ทำ";
-                    break;
-                default:
-                    outputText = "ขอตัวไปส่องเฟสกันน๊า";
                     break;
             }
         } else if (inputText.indexOf("วี") > -1 && ((inputText.indexOf("ไม่") > -1 && (inputText.indexOf("มา") > -1 || inputText.indexOf("อยู่") > -1))
@@ -318,73 +283,110 @@ public class EchoApplication {
                     break;
             }
 
-        } else if (inputText.indexOf("สกรัม") > -1 || inputText.indexOf("scrum") > -1) {
-
-            int value = getRandomNumber(12);
-            int modValue = value % 4;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "มาๆ มาคุยกันหน่อย";
-                    break;
-                case 1:
-                    outputText = "วันนี้งดนะ ไม่มีอะไรอัพเดท";
-                    break;
-                default:
-                    outputText = "เรียกแอ้มาเลย";
-                    break;
-            }
-        } else if (inputText.indexOf("คุย") > -1 && inputText.indexOf("งาน") > -1) {
-
-            int value = getRandomNumber(32);
-            int modValue = value % 6;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "สร้างห้องใหม่นะ ถ้าจะคุยงาน";
-                    break;
-                case 1:
-                    outputText = "ไปเล่นกันตรงโน้น นะ";
-                    break;
-                case 2:
-                    outputText = "พรุ่งนี้ค่อยคุย";
-                    break;
-                case 3:
-                    outputText = "ไม่ทำโว้ย";
-                    break;
-                case 4:
-                    outputText = "ไม่คุยโว้ย";
-                    break;
-                case 5:
-                    outputText = "เกร็งใจอุ้มบ้างนะ";
-                    break;
-                default:
-                    outputText = "เออ ไม่รู้จักเวลาเลย";
-                    break;
-            }
-        } else if (isDevGroup && (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1)))) {
-            outputText = "ไม่ทำโว้ย";
-        } else if (inputText.indexOf("เอา") > -1 && inputText.indexOf("ที่") > -1 && inputText.indexOf("สบาย") > -1 && inputText.indexOf("ใจ") > -1) {
-            outputText = "เรื่องของมรึง";
-
-        } else if (isDevGroup && (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1)) {
-
-            int value = getRandomNumber(12);
-            int modValue = value % 4;
-
-            switch (modValue) {
-                case 0:
-                    outputText = "ยังไม่ว่าง";
-                    break;
-                case 1:
-                    outputText = "อย่างพึ่งกวน";
-                    break;
-                default:
-                    outputText = "เล่นเกมอยู่";
-                    break;
-            }
-
         }
+
+        if (isDevGroup) {
+            if (inputText.indexOf("ช่วย") > -1 || (inputText.indexOf("ทำ") > -1 && (inputText.indexOf("งาน") > -1))) {
+                outputText = "ไม่ทำโว้ย";
+            } else if (inputText.indexOf("เอา") > -1 && inputText.indexOf("ที่") > -1 && inputText.indexOf("สบาย") > -1 && inputText.indexOf("ใจ") > -1) {
+                outputText = "เรื่องของมรึง";
+            } else if (inputText.indexOf("ล้ง") > -1 || inputText.indexOf("ล่งล้ง") > -1) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 4;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ยังไม่ว่าง";
+                        break;
+                    case 1:
+                        outputText = "อย่างพึ่งกวน";
+                        break;
+                    default:
+                        outputText = "เล่นเกมอยู่";
+                        break;
+                }
+
+            } else if (inputText.indexOf("คุย") > -1 && inputText.indexOf("งาน") > -1) {
+
+                int value = getRandomNumber(32);
+                int modValue = value % 6;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "สร้างห้องใหม่นะ ถ้าจะคุยงาน";
+                        break;
+                    case 1:
+                        outputText = "ไปเล่นกันตรงโน้น นะ";
+                        break;
+                    case 2:
+                        outputText = "พรุ่งนี้ค่อยคุย";
+                        break;
+                    case 3:
+                        outputText = "ไม่ทำโว้ย";
+                        break;
+                    case 4:
+                        outputText = "ไม่คุยโว้ย";
+                        break;
+                    case 5:
+                        outputText = "เกร็งใจอุ้มบ้างนะ";
+                        break;
+                    default:
+                        outputText = "เออ ไม่รู้จักเวลาเลย";
+                        break;
+                }
+            } else if (inputText.indexOf("สกรัม") > -1 || inputText.indexOf("scrum") > -1) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 4;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "มาๆ มาคุยกันหน่อย";
+                        break;
+                    case 1:
+                        outputText = "วันนี้งดนะ ไม่มีอะไรอัพเดท";
+                        break;
+                    default:
+                        outputText = "เรียกแอ้มาเลย";
+                        break;
+                }
+            } else if (inputText.indexOf("pantip.com") > -1) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ชอบเผือกกันจริง";
+                        break;
+                    case 1:
+                        outputText = "อ่านแต่ พันทิป งานเสร็จแล้วเหรอ";
+                        break;
+                    default:
+                        outputText = "ขอตัวไปเผือก...ที่พันดิปแป๊รบบ...";
+                        break;
+                }
+
+            } else if (inputText.indexOf("facebook") > -1) {
+
+                int value = getRandomNumber(12);
+                int modValue = value % 3;
+
+                switch (modValue) {
+                    case 0:
+                        outputText = "ชอบส่องกันจริง";
+                        break;
+                    case 1:
+                        outputText = "เล่นแต่ เฟส งานการไม่ทำ";
+                        break;
+                    default:
+                        outputText = "ขอตัวไปส่องเฟสกันน๊า";
+                        break;
+                }
+            }
+        }
+
 
         if (outputText != null && outputText.length() > 0)
 
