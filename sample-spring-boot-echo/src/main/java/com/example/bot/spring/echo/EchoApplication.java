@@ -442,6 +442,8 @@ public class EchoApplication {
                         case 2:
                             outputText = "2 : ChangePP(Agreement/Subscriber) : extId=CHANGE_PP ";
                             break;
+                        default:
+                            break;
                     }
                 } catch (Exception ex) {
                     outputText = ex.getMessage();
